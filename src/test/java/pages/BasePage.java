@@ -2,8 +2,11 @@ package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -31,5 +34,26 @@ public class BasePage {
     //method to navigate to a URL
     public static void naviateTo(String url) {
         driver.get(url);
+    }
+
+    private WebElement find(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    public void clickElement(String locator){
+        find(locator).click();
+    }
+
+    public void sendKeys(String locator, String text) {
+        find(locator).clear();
+        find(locator).sendKeys(text);
+    }
+
+    public String getText(String locator) {
+        return find(locator).getText();
+    }
+
+    public static void closeBrowser() {
+        driver.quit();
     }
 }
