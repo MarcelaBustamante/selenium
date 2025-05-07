@@ -32,10 +32,6 @@ This repository contains a project built using **Selenium**, a powerful tool for
    - Ensure the WebDriver executable is in your system's PATH or configure it in your project.
 
 3. **Run the tests:**
-   To execute tests, use the following Maven command:
-   ```bash
-   mvn test
-   ```
 
    Or, if you are using Gradle:
    ```bash
