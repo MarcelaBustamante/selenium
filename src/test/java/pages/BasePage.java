@@ -86,4 +86,8 @@ public class BasePage {
         return values;
     }
 
+    public void goToLinkText(String linkText) {
+        driver.findElement(By.linkText(linkText)).click();
+    }
+
 }
