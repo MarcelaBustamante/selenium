@@ -1,12 +1,15 @@
 package pages;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -56,4 +59,31 @@ public class BasePage {
     public static void closeBrowser() {
         driver.quit();
     }
+
+    public void selectFromDropdownByValue(String locator, String value) {
+        Select dropdown = new Select(find(locator));
+        dropdown.selectByValue(value);
+    }
+
+    public void selectFromDropdownByIndex(String locator, Integer index) {
+    Select dropdown = new Select(find(locator));
+    dropdown.selectByIndex(index);
+    }
+
+    public int dropdownSize(String locator) {
+        Select dropdown = new Select(find(locator));
+        List<WebElement> dropDownOptions = dropdown.getOptions();
+        return dropDownOptions.size();
+    }
+
+    public List<String> getDropdownValues(String locator){
+        Select dropdown = new Select(find(locator));
+        List<WebElement> dropDownOptions = dropdown.getOptions();
+        List<String> values = new ArrayList<>();
+        for (WebElement option : dropDownOptions) {
+            values.add(option.getText());
+        }
+        return values;
+    }
+
 }
